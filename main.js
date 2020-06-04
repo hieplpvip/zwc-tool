@@ -14,14 +14,12 @@ const app_data = {
     content: '',
     result: '',
     submit() {
-      console.log(this.content.length);
       const regex = /\u200e(.*?)\u200f/g;
       const matches = this.content.matchAll(regex);
       const matchesArr = [...matches];
 
       if (matchesArr) {
         const results = [];
-        console.log(matchesArr);
         matchesArr.forEach((match) => {
           results.push(retrieveMessage(match[1]));
         });
@@ -49,7 +47,6 @@ const convertToZWC = (str) => {
 };
 
 const retrieveMessage = (zwdStr) => {
-  console.log(zwdStr);
   const bitArr = zwdStr.split('').map((c) => {
     if (c == '\u200b') return '0';
     if (c == '\u200c') return '1';
